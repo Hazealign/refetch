@@ -8,7 +8,7 @@ npm install --save @hazelee/refetch
 ```
 
 ```js
-import refetch from 'refetch'
+import refetch from '@hazelee/refetch'
 
 // in async function...
 const result = await refetch('https://api.github.com/repos/hazealign/refetch', { method: 'get' }).json()
