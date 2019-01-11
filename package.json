@@ -1,18 +1,28 @@
 {
-  "name": "refetch",
+  "name": "@hazelee/refetch",
   "version": "1.0.0",
-  "description": "Enhanced fetch API for anyone.",
+  "description": "Enhanced fetch API inspired from r2.",
   "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "ava"
+    "test": "ava -v test",
+    "compile": "rm -rf dist/ && tsc",
+    "prepublish": "npm run compile",
+    "lint": "tslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "build": "npm-run-all compile lint test"
   },
   "keywords": [
-    "fetch"
+    "fetch",
+    "http",
+    "client",
+    "request"
   ],
   "author": "Haze Lee <hazelee@realignist.me>",
   "license": "MIT",
+  "private": false,
   "devDependencies": {
     "ava": "^1.0.1",
+    "npm-run-all": "^4.1.5",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "tslint-config-standard": "^8.0.1",
