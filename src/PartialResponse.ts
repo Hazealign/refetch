@@ -1,31 +1,65 @@
-import type { Blob, Body } from 'node-fetch'
+import type { Blob, Response } from './'
 
-export class PartialResponse implements Partial<Body> {
+export class PartialResponse implements Partial<Response> {
   constructor (
-    private readonly base: Promise<Body>
+    private readonly base: Promise<Response>
   ) {}
 
+  private cachedResponse?: Response
+
+  async getResponse () {
+    if (this.cachedResponse) return this.cachedResponse
+    else {
+      this.cachedResponse = await this.base
+      return this.cachedResponse
+    }
+  }
+
   async arrayBuffer (): Promise<ArrayBuffer> {
-    return await (await this.base).arrayBuffer()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.arrayBuffer()
   }
 
   async blob (): Promise<Blob> {
-    return await (await this.base).blob()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.blob()
   }
 
   async buffer (): Promise<Buffer> {
-    return await (await this.base).buffer()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.buffer()
   }
 
   async json (): Promise<any> {
-    return await (await this.base).json()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.json()
   }
 
   async text (): Promise<string> {
-    return await (await this.base).text()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.text()
   }
 
   async textConverted (): Promise<string> {
-    return await (await this.base).textConverted()
+    if (!this.cachedResponse) {
+      this.cachedResponse = await this.base
+    }
+
+    return await this.cachedResponse.textConverted()
   }
 }

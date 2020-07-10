@@ -1,7 +1,9 @@
-import fetch, { Request, RequestInit, Body } from 'node-fetch'
+import fetch, { Request, RequestInit } from 'node-fetch'
+import { Response } from './'
 import { PartialResponse } from './PartialResponse'
+import { ParameterType, RefetchRequest, RefetchRequestInit } from './Request'
 
-type FetchFunction = (url: string | Request, init?: RequestInit) => Promise<Body>
+type FetchFunction = (url: string | Request, init?: RequestInit) => Promise<Response>
 
 export default class Refetch {
   fetch: FetchFunction
@@ -12,12 +14,29 @@ export default class Refetch {
     if (method !== undefined) this.method = method
   }
 
-  evaluate (url: string | Request, opts?: RequestInit): PartialResponse {
+  evaluate (url: string | RefetchRequest, opts?: RefetchRequestInit): PartialResponse {
     if (this.method) {
       if (typeof url === 'string' && opts !== undefined) opts.method = this.method
-      else if (typeof url === 'object') url.method = this.method
+      else if (url instanceof RefetchRequest) url.method = this.method
+    }
+
+    // Set Merge About URL Query.
+    if (typeof url === 'string' && opts?.query !== undefined) {
+      url = this.mergeQueryWithUrl(url, opts.query)
+    }
+
+    if (url instanceof RefetchRequest && url.query !== undefined) {
+      url.url = this.mergeQueryWithUrl(url.url, url.query)
     }
 
     return new PartialResponse(this.fetch(url, opts))
+  }
+
+  private mergeQueryWithUrl (preUrl: string, param: ParameterType) {
+    const url = new URL(preUrl)
+    const searchParams = (param instanceof URLSearchParams) ? param : new URLSearchParams(param)
+    searchParams.forEach((value, key) => url.searchParams.append(key, value))
+
+    return url.toString()
   }
 }

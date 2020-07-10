@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "ava -v test",
+    "test": "ava --timeout=3m --serial --verbose",
     "compile": "rm -rf dist/ && tsc",
     "prepublish": "yarn run compile",
     "lint": "eslint --fix --ext .ts src",
@@ -46,6 +46,9 @@
     "node-fetch": "^2.3.0"
   },
   "ava": {
+    "files": [
+      "src/__tests__/*.spec.ts"
+    ],
     "compileEnhancements": false,
     "extensions": [
       "ts"
