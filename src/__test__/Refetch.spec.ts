@@ -1,5 +1,5 @@
 import test from 'ava'
-import refetch from './../src'
+import refetch from '../'
 
 test('Test Get Response as JSON', async t => {
   const result = await refetch.get('https://api.github.com/repos/hazealign/refetch').json()

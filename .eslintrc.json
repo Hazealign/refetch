@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "standard-with-typescript",
+    "prettier/@typescript-eslint",
+    "plugin:ava/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings"
+  ],
+  "parserOptions": {
+    "project": [
+      "./tsconfig.json"
+    ]
+  },
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+    "no-console": "error",
+    "comma-dangle": "off",
+    "promise/param-names": 0,
+    "import/no-unresolved": 0,
+    "ava/no-import-test-files": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "caughtErrors": "all",
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/restrict-template-expressions": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/strict-boolean-expressions": 0,
+    "@typescript-eslint/promise-function-async": 0,
+    "@typescript-eslint/require-array-sort-compare": 0,
+    "@typescript-eslint/triple-slash-reference": 0,
+    "ava/no-ignored-test-files": [
+      0,
+      {
+        "files": [
+          "**/*.spec.ts"
+        ]
+      }
+    ]
+  }
+}

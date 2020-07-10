@@ -1,3 +1,17 @@
 {
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "typescript.format.semicolons": "remove",
+  "typescript.format.enable": false,
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll.eslint": true
+    }
+  },
+  "eslint.enable": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
