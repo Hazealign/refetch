@@ -1,6 +1,6 @@
 {
   "name": "@hazelee/refetch",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "Enhanced fetch API inspired from r2.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -24,7 +24,6 @@
   "devDependencies": {
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
-    "@types/node-fetch": "^2.5.7",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
     "ava": "^3.10.1",
@@ -44,7 +43,8 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "@types/node-fetch": "^2.5.7"
   },
   "ava": {
     "files": [
