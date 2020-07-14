@@ -10,7 +10,7 @@ export default class Refetch {
   method?: string
 
   constructor (method ?: string) {
-    this.fetch = ((typeof window !== 'undefined' && window.fetch) ? window.fetch : fetch) as FetchFunction
+    this.fetch = ((typeof window !== 'undefined' && window.fetch) ? window.fetch.bind(window) : fetch) as FetchFunction
     if (method !== undefined) this.method = method
   }
 
