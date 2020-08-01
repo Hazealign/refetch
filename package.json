@@ -1,6 +1,6 @@
 {
   "name": "@hazelee/refetch",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Enhanced fetch API inspired from r2.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",

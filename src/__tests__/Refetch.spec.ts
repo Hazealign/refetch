@@ -28,3 +28,18 @@ test('query option should be work', async t => {
 
   t.deepEqual((await response.getResponse()).url, targetUrl)
 })
+
+test('When URL Path is Relative', t => {
+  // @ts-expect-error
+  global.location = {
+    href: 'https://localhost:8000/'
+  }
+
+  t.notThrows(() => {
+    return refetch.get('/test', {
+      query: {
+        page: 1
+      }
+    })
+  })
+})

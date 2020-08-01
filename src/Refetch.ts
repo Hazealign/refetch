@@ -33,7 +33,18 @@ export default class Refetch {
   }
 
   private mergeQueryWithUrl (preUrl: string, param: ParameterType) {
-    const url = new URL(preUrl)
+    let url: URL
+
+    try {
+      url = new URL(preUrl)
+    } catch (ex) {
+      if (typeof location === 'undefined') {
+        throw ex
+      }
+
+      url = new URL(preUrl, location.href)
+    }
+
     const searchParams = (param instanceof URLSearchParams) ? param : new URLSearchParams(param)
     searchParams.forEach((value, key) => url.searchParams.append(key, value))
 
