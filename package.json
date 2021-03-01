@@ -22,7 +22,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
-    "@commitlint/cli": "^9.0.1",
+    "@commitlint/cli": "^12.0.1",
     "@commitlint/config-conventional": "^11.0.0",
     "@typescript-eslint/eslint-plugin": "^3.6.0",
     "@typescript-eslint/parser": "^3.6.0",
